@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button color="medium" slot="start">
+      <ion-menu-button color="warning"></ion-menu-button>
+    </ion-button>
+    <ion-title>addcolleges</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <form #form="ngForm" (ngSubmit)="onsubmit(form.value)">
+        <ion-item>
+          <ion-label position="floating"> Add Colleges</ion-label>
+          <ion-input type="text" [(ngModel)]="product.col" name="col"  #col="ngModel" required></ion-input>
+          <div class="alert alert-danger" *ngIf="col.touched && col.invalid">
+          entry is required
+          </div>
+        </ion-item>
+        <ion-button type="submit" expand="full" margin-top>Submit</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

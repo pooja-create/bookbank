@@ -14,6 +14,10 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+          },
+          { 
+          path: 'activity-detail/:id',
+          loadChildren: '../activity-detail/activity-detail.module#ActivityDetailPageModule' 
           }
         ]
       },
@@ -38,10 +42,16 @@ const routes: Routes = [
         ]
       },
       {
-        path: '',
-        redirectTo: '/tabs/tab1',
-        pathMatch: 'full'
-      }
+        path: 'tab4',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../tab4/tab4.module').then(m => m.Tab4PageModule)
+          }
+        ]
+      },
+      
     ]
   },
   {
@@ -49,6 +59,7 @@ const routes: Routes = [
     redirectTo: '/tabs/tab1',
     pathMatch: 'full'
   }
+
 ];
 
 @NgModule({

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button  color="danger"></ion-back-button>
+    </ion-buttons>
+    <ion-title>purchaseorder</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card class="card0">
+      <ion-card-header class="row0">
+          <ion-row>
+          <ion-col><ion-text color="light"><b>Title</b></ion-text></ion-col>
+          <ion-col><ion-text color="light"><b>Price</b></ion-text></ion-col>
+          <ion-col size="3.5"><ion-text color="light"><b>Quantity</b></ion-text></ion-col>
+          <ion-col><ion-text color="light"><b>Total</b></ion-text></ion-col>
+        </ion-row>
+      </ion-card-header><br>
+      <ion-card-content *ngIf="cart$ | async as cart">
+        <ion-row *ngFor="let x of cart.productid">
+        <ion-col size="4" *ngIf="(cart.totalquantityCounts(x))!=0">
+          <div class="thumbnail" [style.backgroundImage]="'url('+ cart.totalimageCounts(x) +')'"></div><br>
+          <ion-text text-wrap color="dark"><b>{{ cart.totaltitleCounts(x) }}</b></ion-text>
+        </ion-col>
+        <ion-col *ngIf="(cart.totalquantityCounts(x))!=0"><ion-label text-wrap color="dark"><i class="fa fa-rupee"></i>{{ cart.totalpriceCounts(x) }}</ion-label></ion-col>
+        <ion-col *ngIf="(cart.totalquantityCounts(x))!=0"><ion-label text-wrap color="dark">{{ cart.totalquantityCounts(x) }}</ion-label></ion-col>
+        <ion-col *ngIf="(cart.totalquantityCounts(x))!=0"><ion-label text-wrap color="dark"><i class="fa fa-rupee"></i>{{ cart.totalpriceCounts(x)*cart.totalquantityCounts(x) }}</ion-label></ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <ion-grid>
+  <ion-row>
+  <ion-col>
+  <ion-card class="ion-card1" style="float: right;">
+    <ion-card-content>
+      <ion-row *ngIf="cart$ | async as cart">
+        <ion-col><ion-label color="danger" text-wrap>OrderTotal</ion-label></ion-col>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <ion-col><ion-label color="danger" text-wrap><i class="fa fa-rupee"></i>{{ cart.totalprice }}</ion-label></ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="ion-card2">
+    <ion-button routerLink="/addresscart"><ion-text><ion-icon name="pricetag"></ion-icon>Place Order</ion-text></ion-button>
+  </ion-card>
+</ion-col>
+</ion-row>
+</ion-grid>
+</ion-content>

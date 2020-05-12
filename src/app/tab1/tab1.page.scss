@@ -2,3 +2,46 @@
   max-height: 35vh;
   overflow: hidden;
 }
+.title{
+  color: #0000ff;
+}
+ion-slide img {
+  height: 150px !important;
+  width: 100% !important;
+}
+
+ion-fab-button {
+  height: 65px;
+  width: 65px;
+}
+ 
+.cart-icon {
+  font-size: 50px;
+}
+ 
+.cart-length {
+  color: var(--ion-color-primary);
+  position: absolute;
+  top: 18px;
+  left: 25px;
+  font-weight: 600;
+  font-size: 1em;
+  min-width: 25px;
+  z-index: 10;
+}
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 60px;
+  align-items: center;
+  
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+ion-col {
+  height: 100%;
+}

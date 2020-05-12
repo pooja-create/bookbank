@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button color="medium" slot="start">
+      <ion-menu-button color="warning"></ion-menu-button>
+    </ion-button>
+    <ion-title>admin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ <div class="row">
+  <div class="col-mb-6">
+    <ion-card>
+      <ion-card-content>
+        <form #form="ngForm" (ngSubmit)="onsubmit(form.value)">
+          <ion-item>
+            <ion-label position="floating">Book Title</ion-label>
+            <ion-input type="text" [(ngModel)]="product.btitle" name="btitle"  #btitle="ngModel" required></ion-input>
+          <div class="alert alert-danger" *ngIf="btitle.touched && btitle.invalid">
+            title is required
+          </div>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Writer</ion-label>
+            <ion-input type="text" [(ngModel)]="product.writer" name="writer"  #writer="ngModel" required></ion-input>
+          <div class="alert alert-danger" *ngIf="writer.touched && writer.invalid">
+              writer is required
+          </div>  
+          </ion-item>
+          <ion-item>
+           <ion-label position="floating">Price</ion-label>
+           <ion-input type="number" [(ngModel)]="product.price" name="price" #price="ngModel" required [min]="0"></ion-input>
+           <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+            price is required
+           </div>
+           
+           <p *ngIf="price.errors?.min">this is not valid price</p>
+           
+          </ion-item>
+          <ion-item>
+          <ion-label>Category</ion-label>
+          <select type="text" name="category" [(ngModel)]="product.category" #category="ngModel" required>
+            <option *ngFor="let c of category$ | async" [value]="c.key" >{{ c.payload.val().name }}</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
+            category is required
+          </div>
+          </ion-item>
+          <ion-item>
+             <ion-label position="floating">Discription</ion-label>
+             <ion-textarea type="text" [(ngModel)]="product.dis" name="dis"  #discription="ngModel" required></ion-textarea>
+             <div class="alert alert-danger" *ngIf="discription.touched && discription.invalid">
+              description is required
+            </div>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Image Url</ion-label>
+            <ion-input type="text" [(ngModel)]="product.image" name="image" #image="ngModel" required ></ion-input>
+            <div class="alert alert-danger" *ngIf="image.touched && image.invalid">
+              image url is required
+            </div>
+           
+         </ion-item>
+           <ion-button type="submit" expand="full" margin-top>Submit</ion-button>
+           <ion-button color="danger" expand="full" margin-top (click)="deletebook()">Delete</ion-button>
+        </form>
+        
+      </ion-card-content>
+      
+    </ion-card>
+
+  </div>
+  <div class="col-mb-6">
+   
+    <h2 style="text-align:center;" >Upload Preview</h2>
+    <ion-card>
+      <ion-card-content>
+        <ion-item>{{ btitle.value }}</ion-item>
+        <ion-item>{{ category.value  }}</ion-item>
+        <ion-item>{{ writer.value }}</ion-item>
+        <ion-item><img [src]="image.value"></ion-item>
+        <ion-item>{{ price.value }}</ion-item>
+        <ion-item>{{ discription.value }}</ion-item>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+ </div>
+  
+</ion-content>

@@ -1,9 +1,46 @@
 <ion-header>
   <ion-toolbar>
+    <ion-button color="medium" slot="start">
+      <ion-menu-button color="warning"></ion-menu-button>
+    </ion-button>
     <ion-title>
       Tab Three
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content></ion-content>
+<br>
+<ion-content>
+    <ion-item>Stationery</ion-item>
+    <ion-grid>
+    <ion-row>
+    <ion-slides [options]="slideOpt">
+      <ion-slide *ngFor="let imagenew of ImageArray1">
+      <ion-col><img src="{{ imagenew.image }}">
+     Price {{ imagenew.price  }}</ion-col>
+    </ion-slide>
+    </ion-slides>
+   </ion-row>
+   </ion-grid>
+   <br>
+   <ion-grid>
+      <ion-row>
+      <ion-slides [options]="slideOpt">
+        <ion-slide *ngFor="let imagenew of ImageArray2">
+        <ion-col><img src="{{ imagenew.image }}">
+       Price {{ imagenew.price  }}</ion-col>
+      </ion-slide>
+      </ion-slides>
+     </ion-row>
+     </ion-grid>
+    <br>
+    <ion-grid>
+        <ion-row>
+        <ion-slides [options]="slideOpt">
+          <ion-slide *ngFor="let imagenew of ImageArray3">
+          <ion-col><img src="{{ imagenew.image }}">
+         Price {{ imagenew.price  }}</ion-col>
+        </ion-slide>
+        </ion-slides>
+       </ion-row>
+       </ion-grid>
+</ion-content>

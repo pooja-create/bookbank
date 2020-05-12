@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button color="medium" slot="start">
+      <ion-menu-button color="warning"></ion-menu-button>
+    </ion-button>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-avatar class="profile-pic" *ngFor="let x of a">
+    <ion-img src="{{ x.image }}"></ion-img>
+  </ion-avatar>
+  <br>
+  Purchased Books<br>
+  <ion-grid *ngFor="let x1 of b">
+  <ion-row>
+    <ion-col>
+        <img src="{{ x1.image2 }}" height='75' width='60'>
+    </ion-col>
+    <ion-col>
+        {{x1.title}}
+        {{x1.ddate}}
+    </ion-col>
+    
+  </ion-row>
+  </ion-grid>
+  Uploaded Old Books<br>
+  <ion-grid *ngFor="let x2 of c">
+      <ion-row>
+        <ion-col>
+            <img src="{{ x2.image3 }}" height='75' width='60'>
+        </ion-col>
+        <ion-col>
+            {{x2.title}}
+            {{x2.ddate}}
+        </ion-col>
+        
+      </ion-row>
+  </ion-grid>
+</ion-content>

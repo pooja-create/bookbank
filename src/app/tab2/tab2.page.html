@@ -1,9 +1,27 @@
 <ion-header>
   <ion-toolbar>
+    
     <ion-title>
-      Tab Two
+      After Read Put Into Shelf for Sell
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+
+<ion-content>
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+        <ion-fab-button>
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="buttom">
+          <ion-fab-button color="danger">Login</ion-fab-button>
+          <ion-fab-button color="danger">Logout</ion-fab-button>
+        </ion-fab-list>
+    </ion-fab>
+
+    <ion-button color="medium" size="large">
+        Upload Your Book<ion-icon slot="icon-only" name="camera"></ion-icon>
+    </ion-button>
+</ion-content>
+
+

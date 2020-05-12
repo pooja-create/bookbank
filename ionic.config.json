@@ -1,5 +1,7 @@
 {
   "name": "bookbank",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

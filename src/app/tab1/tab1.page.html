@@ -1,41 +1,64 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab One
+  
+  <ion-toolbar secondary>
+    <ion-button color="medium" slot="start">
+      <ion-menu-button color="warning"></ion-menu-button>
+    </ion-button>
+    <ion-title *ngIf="afAuth.user | async as user">
+        {{ user.displayName }}
     </ion-title>
+   
+    
   </ion-toolbar>
+  <ion-toolbar class="less-height" color="primary">
+    <ion-segment (ionChange)="segmentChanged()" [(ngModel)]="segment" color="tertiary" scrollable mode="md"  [(ngModel)]="segment">
+      
+      <a *ngFor="let c of filteredcat" routerLink="../" [queryParams]="{ category:c.id }" 
+      [class.active]="category === c.id">
+      <ion-segment-button mode="md" id="seg-1" value="{{  c.name }}">
+          {{ c.name }}
+      </ion-segment-button>
+      </a>
+    </ion-segment>
+</ion-toolbar>
 </ion-header>
-
 <ion-content>
-    <ion-card class="welcome-card">
-      <img src="/assets/shapes.svg" alt="" />
-      <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Welcome to Ionic</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
-      </ion-card-content>
+  <ion-fab *ngIf ="card$ | async as c"  vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <div  class="cart-length" routerLink="/purchaseorder">{{ c.totalItemsCounts }}</div>
+      <ion-icon name="cart"  class="cart-icon"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-button (click)="show=!show">
+    <ion-icon name="arrow-forward" right></ion-icon>
+  </ion-button>
+<div *ngIf="show; else notShow">  
+    <ion-card *ngFor="let c of filteredProduct">
+       <ion-item><img src="{{ c.image }}"></ion-item>
+       <ion-item>{{ c.price }}</ion-item>
     </ion-card>
-    <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Resources</ion-label>
-      </ion-list-header>
-      <ion-item href="https://ionicframework.com/docs/">
-        <ion-icon slot="start" color="medium" name="book"></ion-icon>
-        <ion-label>Ionic Documentation</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/building/scaffolding">
-        <ion-icon slot="start" color="medium" name="build"></ion-icon>
-        <ion-label>Scaffold Out Your App</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/layout/structure">
-        <ion-icon slot="start" color="medium" name="grid"></ion-icon>
-        <ion-label>Change Your App Layout</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/theming/basics">
-        <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
-        <ion-label>Theme Your App</ion-label>
-      </ion-item>
-    </ion-list>
+</div>
+<ng-template #notShow>
+  <ion-slides  #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
+    <ion-slide>
+      <p>
+        <ion-grid>
+          <ion-row>
+          <ion-slides [options]="slideOpt">
+            <ion-slide *ngFor="let c of filteredProduct" [routerLink]="['/bookdetail',c.id]">
+            <ion-col>
+                  <ion-label><img class="center" src="{{ c.image }}"></ion-label>
+                  <ion-label><ion-text><h6>{{ c.btitle }}</h6></ion-text></ion-label>
+                  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                  <ion-label><ion-text><h5>Price <i class="fa fa-rupee"></i>{{ c.price  }}</h5></ion-text></ion-label>
+            </ion-col>
+          </ion-slide>
+          </ion-slides>
+         </ion-row>
+        </ion-grid>
+      </p>
+    </ion-slide>
+  </ion-slides>
+</ng-template>
+
 </ion-content>

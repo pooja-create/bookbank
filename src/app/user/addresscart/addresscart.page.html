@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button  color="danger"></ion-back-button>
+    </ion-buttons>
+    <ion-title>addresscart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+      <form #form="ngForm" (ngSubmit)="onsubmit(form.value)">
+        <ion-item>
+          <ion-label position="floating">Full Name</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Mobile Number</ion-label>
+          <ion-input type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>College Area</ion-label>
+          <ion-select placeholder="Select One">
+            <ion-select-option *ngFor="let c of colleges$ | async" value="{{ c.col }}">{{ c.col }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-button type="submit" style="font-size : 13px; width: 100%; height: 50px;">Deliver to this Address</ion-button>
+      </form>
+      
+    </ion-card>
+</ion-content>

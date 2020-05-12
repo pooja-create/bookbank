@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>activity-detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="data">
+  <ion-card-content>
+      <ion-item *ngFor="let i of data">
+        {{ i.price }}
+      <ion-img src="{{ i.image }}"></ion-img>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
